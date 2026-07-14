@@ -34,5 +34,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    var testList = context.Products.ToList();
+    Console.WriteLine("Gho Daung : apperar b");
+}
 
 app.Run();
